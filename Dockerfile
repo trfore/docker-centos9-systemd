@@ -1,15 +1,30 @@
 ARG BASEOS_DIGEST
-FROM docker.io/library/debian:10${BASEOS_DIGEST:-}
+FROM quay.io/centos/centos:stream9${BASEOS_DIGEST:-}
 
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-    procps systemd systemd-sysv sudo \
-    libffi-dev libssl-dev python3 \
-    && rm -Rf /var/lib/apt/lists/* \
+ENV container docker
+
+RUN yum -y update \
+    && yum -y install \
+    epel-release \
+    hostname \
+    initscripts \
+    iproute \
+    openssl \
+    sudo \
+    which \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
-    && apt-get clean
+    && yum clean all
 
-RUN rm -f /lib/systemd/system/multi-user.target.wants/getty.target
+# selectively remove systemd targets -- See https://hub.docker.com/_/centos/
+RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
+    systemd-tmpfiles-setup.service ] || rm -f $i; done); \
+    rm -f /lib/systemd/system/multi-user.target.wants/*;\
+    rm -f /etc/systemd/system/*.wants/*;\
+    rm -f /lib/systemd/system/local-fs.target.wants/*; \
+    rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
+    rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
+    rm -f /lib/systemd/system/basic.target.wants/*;\
+    rm -f /lib/systemd/system/anaconda.target.wants/*;
 
 STOPSIGNAL SIGRTMIN+3
 
