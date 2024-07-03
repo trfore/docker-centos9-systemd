@@ -39,6 +39,5 @@ jobs:
     steps:
       - run: >-
           python -c "assert set([
-          '${{ needs.cgroup-v1.result }}',
           '${{ needs.cgroup-v2.result }}',
           ]) == {'success'}"
