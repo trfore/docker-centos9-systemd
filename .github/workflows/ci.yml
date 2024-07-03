@@ -31,7 +31,7 @@ jobs:
       volume-permission: rw
 
   check:
-    if: always() && failure()
+    if: success() || failure()
     needs:
       - cgroup-v1
       - cgroup-v2
