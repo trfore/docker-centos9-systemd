@@ -1,3 +1,8 @@
-# linted by yamllint
-*.yaml
-*.yml
+# environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
