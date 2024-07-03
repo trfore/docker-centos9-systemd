@@ -16,30 +16,29 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - continue-on-error: true
-            runner: ubuntu-20.04
-            volume-permission: ro
-          - continue-on-error: false
-            runner: ubuntu-22.04
-            volume-permission: rw
+  cgroup-v1:
     uses: trfore/docker-image/.github/workflows/test_systemd.yml@main
     with:
-      continue-on-error: ${{ matrix.continue-on-error }}
-      runner: ${{ matrix.runner }}
-      volume-permission: ${{ matrix.volume-permission }}
+      continue-on-error: true
+      runner: ubuntu-20.04
+      volume-permission: ro
+
+  cgroup-v2:
+    uses: trfore/docker-image/.github/workflows/test_systemd.yml@main
+    with:
+      continue-on-error: false
+      runner: ubuntu-22.04
+      volume-permission: rw
 
   check:
     if: always() && failure()
     needs:
-      - test
+      - cgroup-v1
+      - cgroup-v2
     runs-on: ubuntu-latest
     steps:
       - run: >-
           python -c "assert set([
-          '${{ needs.test.result }}',
+          '${{ needs.cgroup-v1.result }}',
+          '${{ needs.cgroup-v2.result }}',
           ]) == {'success'}"
