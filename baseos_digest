@@ -1,1 +1,1 @@
-{ "baseos": { "name": "quay.io/centos/centos", "digest": "sha256:70f5d98f555a6cc185d29432e7b5e1a0881c8c3e5d0d1590daa01b616d3b4048", "layer": "sha256:edd6d90f3a80a1deace8a80c151a7087f625035fcd963724db8989da5d62dd65", "created": "2024-10-15T00:58:19.919933112Z" } }
+{ "baseos": { "name": "quay.io/centos/centos", "digest": "sha256:f5aeff3bc17215a1d29f6eedaa44715c3ebb06ab03ec4e05f7b6f64a76f420b9", "layer": "sha256:49248b282aaf5289d56f9d939916e0affbfdf8394bab26228763c1dafba8c18a", "created": "2024-10-17T00:33:23.383427517Z" } }
