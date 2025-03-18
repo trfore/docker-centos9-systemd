@@ -10,14 +10,10 @@ RUN yum -y update \
     initscripts \
     iproute \
     openssl \
-    python3.11 \
     sudo \
     which \
     && rm -Rf /usr/share/doc && rm -Rf /usr/share/man \
-    && yum clean all \
-    # set python 3.11 as default
-    && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1 \
-    && update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 2
+    && yum clean all
 
 # selectively remove systemd targets -- See https://hub.docker.com/_/centos/
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
