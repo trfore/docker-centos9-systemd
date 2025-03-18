@@ -1,7 +1,7 @@
 # docker-centos9-systemd
 
 [![CI](https://github.com/trfore/docker-centos9-systemd/actions/workflows/ci.yml/badge.svg)](https://github.com/trfore/docker-centos9-systemd/actions/workflows/ci.yml)
-[![CD](https://github.com/trfore/docker-centos9-systemd/actions/workflows/cd.yml/badge.svg)](https://github.com/trfore/docker-centos9-systemd/actions/workflows/cd.yml)
+[![CD](https://github.com/trfore/docker-centos9-systemd/actions/workflows/cd.yml/badge.svg?event=pull_request)](https://github.com/trfore/docker-centos9-systemd/actions/workflows/cd.yml)
 
 A minimal systemd enabled centos9 Docker image for testing Ansible roles with Molecule.
 
