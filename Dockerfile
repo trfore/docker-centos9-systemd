@@ -26,6 +26,9 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     rm -f /lib/systemd/system/basic.target.wants/*;\
     rm -f /lib/systemd/system/anaconda.target.wants/*;
 
+# hotfix for issue #49
+RUN chmod 0400 /etc/shadow
+
 STOPSIGNAL SIGRTMIN+3
 
 VOLUME ["/sys/fs/cgroup"]
