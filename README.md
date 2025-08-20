@@ -86,7 +86,7 @@ or merged to the `main` branch. But if you need to build the image on your own l
 
 ## Maintainers
 
-Taylor Fore (<https://github.com/trfore>)
+- <https://github.com/trfore>
 
 ## Acknowledgements
 
